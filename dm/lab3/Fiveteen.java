@@ -1,2 +1,8 @@
-package PACKAGE_NAME;public class Fiveteen {
+import java.util.Scanner;
+
+public class Fiveteen {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+    }
 }

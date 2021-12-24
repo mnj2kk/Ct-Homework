@@ -1,0 +1,15 @@
+#!/bin/bash
+unzip word-count.zip -d tmp
+cd tmp
+file=target.word
+name=$(<"$file")
+cd ../
+mkdir tmp1
+find tmp  -type f -name "*$name*"|xargs -i cp {} tmp1
+cd tmp1
+ls
+wc -w * 
+cd ../
+rm -r tmp
+rm -r tmp1
+

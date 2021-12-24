@@ -1,0 +1,4 @@
+--patch-module
+ru.covariance.dc21sample=_
+--add-reads
+ru.covariance.dc21sample=ALL-UNNAMED

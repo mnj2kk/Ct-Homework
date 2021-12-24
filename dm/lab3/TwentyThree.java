@@ -1,33 +1,55 @@
 import java.util.Scanner;
-public class TwentyThree{
-    public static void  main(String[] args){
-    Scanner scan = new Scanner(System.in);
-    String str = scan.nextLine();
-    int l = str.length();
-        String p = Integer.toBinaryString(Integer.parseInt(str,2)-1);
-    try{
-        p= "0".repeat(l-p.length()) +p;
+
+public class TwentyThree {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String bit = scan.nextLine();
+        boolean smallHasFinished = false;
+        StringBuilder small = new StringBuilder();
+        StringBuilder big = new StringBuilder();
+        boolean bigHasFinished = false;
+        for (int i = bit.length()-1; i >= 0; i--) {
+            if(bit.charAt(i)=='0'){
+                if(!smallHasFinished){
+                    small.append('1');
+                }
+                else{
+                    small.append('0');
+                }
+                if(!bigHasFinished){
+                    bigHasFinished=true;
+                    big.append('1');
+                }
+                else{
+                    big.append('0');
+                }
+            }
+            else{
+                if(!smallHasFinished){
+                    small.append('0');
+                    smallHasFinished = true;
+                }
+                else{
+                    small.append('1');
+                }
+                if(!bigHasFinished){
+                    big.append('0');
+                }
+                else{
+                    big.append('1');
+                }
+            }
+        }
+        big.reverse();
+        small.reverse();
+        if(!bit.contains("0")){
+            big=new StringBuilder("-");
+        }
+        if(!bit.contains("1")){
+            small = new StringBuilder("-");
+        }
+        System.out.println(small);
+        System.out.println(big);
     }
-    catch(Exception e){
-    }
-    String n = Integer.toBinaryString(Integer.parseInt(str,2)+1);
-    try{
-    n  = "0".repeat(l-n.length()) +n;
-    }
-    catch(Exception e){
-    }
-    if(Integer.parseInt(str,2)!=0){
-    System.out.println(p);
-    }
-    else{
-    System.out.println("-");
-    }
-     if(Integer.parseInt(str,2)!=(int)Math.pow(2,l)-1){
-    System.out.println(n);
-    }
-    else{
-    System.out.println("-");
-    }
-}
 }
 

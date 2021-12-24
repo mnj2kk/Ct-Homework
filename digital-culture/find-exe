@@ -1,0 +1,5 @@
+#!/bin/bash
+mkdir tmp
+unzip  find-exe.zip -d tmp
+find tmp -executable -type f
+rm -r  tmp

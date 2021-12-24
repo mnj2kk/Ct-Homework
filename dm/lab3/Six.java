@@ -8,7 +8,7 @@ public class Six {
     int end = 2 << (n-1);
     List<String> list = new ArrayList<String>();
     for(int i =0;i<end;i++){
-        String tmp =Integer.toBinaryString(i);
+        String tmp = fuckingBin(i);
         boolean has1 =false;
         boolean isR= true;
         for(int j=0;j<tmp.length();j++){
@@ -32,6 +32,16 @@ public class Six {
     for(int i =0;i<list.size();i++){
         System.out.println(list.get(i));
     }
+    }
+    static String fuckingBin(int n){
+        StringBuilder s = new StringBuilder();
+        while (n > 0)
+        {
+            s.append( ((n % 2) == 0 ? "0" : "1"));
+            n = n / 2;
+        }
+        s.reverse();
+        return s.toString();
     }
 
 }

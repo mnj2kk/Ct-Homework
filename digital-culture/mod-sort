@@ -1,0 +1,9 @@
+#!/bin/bash
+mkdir tmp
+unzip mod-sort.zip  -d tmp
+cd tmp
+files=$(ls -tr)
+ls -tr
+cat $files | sha256sum
+cd ../
+rm -r tmp

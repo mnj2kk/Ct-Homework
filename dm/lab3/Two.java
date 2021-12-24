@@ -1,33 +1,42 @@
 import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
-public class Two{
-    public static void  main(String[] args){
-    Scanner scan = new Scanner(System.in);
-    List<String> list = new ArrayList<>();
-    int n = scan.nextInt();
-    list.add("0");
-    list.add("1");
-    for(int i =1;i<n;i++){
-        list.addAll(reverse(list));
-        for (int j =0;j< list.size();j++){
-            if(j<list.size()/2){
-            list.set(j,"0" +list.get(j));
+
+public class Two {
+    static int n;
+    static StringBuilder ans = new StringBuilder();
+    static int counter=0;
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        n = scan.nextInt();
+        int end = 2 << (n - 1);
+        int[ ] tmp =new int[n];
+        tmp[0]=0;
+        genVect(1,1,tmp);
+        tmp[0]=1;
+        genVect(1, 1, tmp);
+        System.out.println(counter);
+        System.out.println(ans);
+    }
+
+    public static void genVect(int length, int position, int[] currComb) {
+        if (length == n) {
+            for (int j : currComb) {
+                ans.append(j);
             }
-            else{
-              list.set(j,"1" +list.get(j));
+            counter++;
+            ans.append(System.lineSeparator());
+        } else {
+            for (int i = 0; i < 2; i++) {
+                if(i==1 && currComb[position-1]==0){
+                    currComb[position] = i;
+                    genVect(length + 1, position + 1, currComb);
+                }
+                else if(i==0) {
+                    currComb[position] = i;
+                    genVect(length + 1, position + 1, currComb);
+                }
             }
         }
     }
-    for(int i =0;i<list.size();i++){
-        System.out.println(list.get(i));
-    }
-    }
-    public static List<String> reverse(List<String> list ){
-         List<String> tmp = new  ArrayList<String>();
-        for(int i =list.size()-1;i>=0;i--){
-            tmp.add(list.get(i));
-        }
-        return tmp;
-    }
+
 }
