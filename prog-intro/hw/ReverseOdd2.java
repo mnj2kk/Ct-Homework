@@ -1,17 +1,20 @@
+import scanner.MyScanner;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class ReverseOdd2 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ArrayList<int[]> lines = new ArrayList<>();
-        Scanner scan = new Scanner(System.in);
+        MyScanner scan = new MyScanner(System.in);
+        MyScanner lineScan;
         while (scan.hasNextLine()) {
             String line = scan.nextLine();
-            Scanner lineScan = new Scanner(line);
+             lineScan = new MyScanner(line);
             //or only numbers=line.split("\\s+"));
-            int[] numbers = new int[10];
+            int[] numbers = new int[1000];
             int counter = 0;
             while (lineScan.hasNextInt()) {
                 if(counter+1>= numbers.length){
@@ -27,14 +30,18 @@ public class ReverseOdd2 {
             lines.add(numbers);
         }
         scan.close();
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = lines.size() - 1; i >= 0; i--) {
             int[] numbers = lines.get(i);
             for (int j = numbers.length - 1; j >= 0; j--) {
                 if((j+i)%2==1){
-                    System.out.print(numbers[j] +" ");
+                   stringBuilder.append(numbers[j]).append(" ");
                 }
             }
-            System.out.println();
+            if(i>0){
+                stringBuilder.append(System.lineSeparator());
+            }
         }
+        System.out.println(stringBuilder);
     }
 }

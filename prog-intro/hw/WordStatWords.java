@@ -15,10 +15,9 @@ public class WordStatWords {
         final String INPUT_FILE = args[0];
         final String OUTPUT_FILE = args[1];
         try {
-            BufferedReader input = new BufferedReader(
+            try (BufferedReader input = new BufferedReader(
                     new InputStreamReader(
-                            new FileInputStream(INPUT_FILE), StandardCharsets.UTF_8));
-            try {
+                            new FileInputStream(INPUT_FILE), StandardCharsets.UTF_8))) {
                 //In test max size of word is 10))
                 char[] buffer = new char[20];
                 int counter = 0;
@@ -43,8 +42,6 @@ public class WordStatWords {
                         }
                     }
                 }
-            } finally {
-                input.close();
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found" + e.getMessage());
@@ -52,16 +49,13 @@ public class WordStatWords {
             System.out.println("File is busy" + e.getMessage());
         }
         try {
-            BufferedWriter output = new BufferedWriter(
+            try (BufferedWriter output = new BufferedWriter(
                     new OutputStreamWriter(
-                            new FileOutputStream(OUTPUT_FILE), StandardCharsets.UTF_8));
-            try {
+                            new FileOutputStream(OUTPUT_FILE), StandardCharsets.UTF_8))) {
                 for (String word : words.keySet()) {
                     output.write(word + " " + words.get(word));
                     output.newLine();
                 }
-            } finally {
-                output.close();
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found" + e.getMessage());

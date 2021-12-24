@@ -1,3 +1,4 @@
+import scanner.MyScanner;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -27,16 +28,13 @@ public class WordStatInput {
             ioException.printStackTrace();
         }
         try {
-            BufferedWriter output = new BufferedWriter(
+            try (BufferedWriter output = new BufferedWriter(
                     new OutputStreamWriter(
-                            new FileOutputStream(OUTPUT_FILE), StandardCharsets.UTF_8));
-            try {
+                            new FileOutputStream(OUTPUT_FILE), StandardCharsets.UTF_8))) {
                 for (String word : words.keySet()) {
                     output.write(word + " " + words.get(word));
                     output.newLine();
                 }
-            } finally {
-                output.close();
             }
 
         } catch (FileNotFoundException e) {

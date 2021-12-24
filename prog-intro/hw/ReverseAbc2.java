@@ -1,8 +1,9 @@
 
+import scanner.MyScanner;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class ReverseAbc2 {
 
@@ -16,7 +17,7 @@ public class ReverseAbc2 {
                 if (line != null) {
                     MyScanner lineScan = new MyScanner(line);
                     //or only numbers=line.split("\\s+"));
-                    int[] numbers = new int[10];
+                    int[] numbers = new int[1000];
                     int counter = 0;
                     while (lineScan.hasNextAbc2Int()) {
                         if (counter + 1 >= numbers.length) {
@@ -42,12 +43,17 @@ public class ReverseAbc2 {
             System.out.println("sScanner Closing  problems" + e.getMessage());
 
         }
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = lines.size() - 1; i >= 0; i--) {
             int[] numbers = lines.get(i);
             for (int j = numbers.length - 1; j >= 0; j--) {
-                System.out.print(numbers[j] + " ");
+                stringBuilder.append(numbers[j]).append(" ");
             }
-            System.out.println();
+            if(i>0){
+                stringBuilder.append(System.lineSeparator());
+            }
         }
+        System.out.println(stringBuilder);
+
     }
 }
