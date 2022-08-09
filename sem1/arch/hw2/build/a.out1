@@ -1,0 +1,14 @@
+**** module/scope: control_unit
+     Flip-Flops   : 0
+     Logic Gates  : 1
+     LPM[5]: 16 unaccounted
+     LPM[40]: 7 unaccounted
+     LOG[13]: 8 unaccounted
+     LOG[14]: 1 unaccounted
+**** TOTALS
+     Flip-Flops   : 0
+     Logic Gates  : 1
+     LPM[5]: 16 unaccounted
+     LPM[40]: 7 unaccounted
+     LOG[13]: 8 unaccounted
+     LOG[14]: 1 unaccounted

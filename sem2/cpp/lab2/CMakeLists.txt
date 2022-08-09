@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.21)
+project(lab2 C)
+set(CMAKE_C_STANDARD 11)
+include_directories(.)
+find_package(ZLIB )
+ADD_DEFINITIONS(-D ISAL )
+add_executable(lab2 main.c
+        return_codes.h)
+target_link_libraries( lab2  ZLIB::ZLIB )
+target_link_libraries( lab2  ${CMAKE_SOURCE_DIR}/libdeflate.a )
+target_link_libraries( lab2  ${CMAKE_SOURCE_DIR}/libisal.so )
