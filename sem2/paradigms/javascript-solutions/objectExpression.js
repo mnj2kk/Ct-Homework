@@ -163,7 +163,7 @@ const parsePrefix = input => {
     input = input.replace(/\(/g, ' ( ').replace(/\)/g, ' ) ').split(" ").filter(t => t.length > 0);
 
     let balance = 0;
-    let mustBeAOperation = true;
+    let mustBeAnOperation = true;
     if (input.length === 0) {
         throw  new WrongInputError();
     }
@@ -172,10 +172,10 @@ const parsePrefix = input => {
                 if (token === ")") {
                     balance++;
                     stack.push(token);
-                    mustBeAOperation = true;
+                    mustBeAnOperation = true;
                 } else {
                     balance--;
-                    if (mustBeAOperation) {
+                    if (mustBeAnOperation) {
                         throw  new ParseError(token, index, `because ${stack[stack.length - 1]} not a operation`);
                     }
                 }
@@ -186,11 +186,11 @@ const parsePrefix = input => {
                 let op = OPERATORS.get(token);
                 let elems = stack.slice(stack.lastIndexOf(")", -op[1]) + 1, stack.length).reverse();
                 if (elems.length !== op[1]) {
-                    throw new ParseError(token, index, "because not enough elements");
+                    throw new ParseError(token, index, "Because not enough elements");
                 }
                 stack = stack.slice(0, -op[1] - 1);
                 stack.push(new op[0](...elems))
-                mustBeAOperation = false
+                mustBeAnOperation = false
             } else if (VARIABLES.has(token)) {
                 stack.push(new Variable((token), index));
             } else {
@@ -213,7 +213,7 @@ const parsePrefix = input => {
 
 class ParseError extends Error {
     constructor(token, index, cause = "") {
-        super(`ParseError :unexpected token  ${token} at ${index} ${cause}`);
+        super(`ParseError: unexpected token  ${token} at ${index} ${cause}`);
     }
 }
 

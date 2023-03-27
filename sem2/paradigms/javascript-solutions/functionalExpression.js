@@ -19,8 +19,7 @@ const parse = input => {
             if (s in OPERATORS) {
                 let elems = stack.slice(-OPERATORS[s][1]);
                 stack = stack.slice(0, -OPERATORS[s][1]);
-                OPERATORS[s][1].stack.push(OPERATORS[s][0](...elems));
-
+                stack.push(OPERATORS[s][0](...elems));
             } else if (s in VARIABLES) {
                 stack.push(variable((s)));
 
